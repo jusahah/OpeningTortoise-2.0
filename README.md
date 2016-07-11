@@ -11,4 +11,10 @@ by taking periodically screenshots of your online chess board and figuring out t
 This functionality uses ChessPositionRecognizer as a dependency and is nowhere near error-free at the moment.
 Currently only chess.com board layout is supported. ChessPositionRecognizer is work-in-progress.
 
-### MIT LICENCE etc.
+## Tests
+
+Uses Mocha and runs tests async. Tests are in their separate files in 'test' folder. Run 'mocha' on command line on app folder.
+
+## Based on electron-boilerplate project.
+
+**MIT LICENCE etc.**

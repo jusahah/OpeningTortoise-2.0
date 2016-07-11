@@ -1,4 +1,4 @@
-
+var _ = require('lodash');
 var Promise = require('bluebird');
 
 module.exports = function(Box, dataAPI) {
@@ -32,13 +32,49 @@ module.exports = function(Box, dataAPI) {
 	    	return dataAPI.getList();
 	    }
 
+	    var getTrainingSet = function(size, includeOnly) {
+
+	    	if (includeOnly === 'random') {
+	    		return dataAPI.getList().then(function(positions) {
+	    			return _.sampleSize(positions, size);
+	    		});
+
+	    	} else if (includeOnly === 'topXLatest') {
+	    		// This is pretty heave on large data set
+	    		return dataAPI.getList().then(function(positions) {
+	    			var sorted = _.sortBy(positions, function(position) {
+	    				var occurs = position.occurs
+	    				return _.last(occurs);
+	    			});
+
+	    			return _.take(sorted, size);
+	    		});
+
+	    	} else {
+	    		throw "Unsupported training set selection: " + includeOnly;
+	    	}
+	    }
+
+	    var getCombinedTrainingSet = function(portions) {
+
+	    	return Promise.reduce(portions, function(gatherArr, portion) {
+	    		return getTrainingSet(portion.size, portion.includeOnly).then(function(trainPositions) {
+	    			return _.concat(gatherArr,trainPositions);
+	    		})
+	    	}, []);
+
+	    	
+	    }
+
 
 	    return {
 	    	needCount: needCount,
 	    	needAll: needAll,
 	        needPosition: needPosition,
 	        train: train,
-	        occur: occur
+	        occur: occur,
+	        getTrainingSet: getTrainingSet,
+	        getCombinedTrainingSet: getCombinedTrainingSet
 
 	    };
 	});

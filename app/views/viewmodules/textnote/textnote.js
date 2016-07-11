@@ -44,6 +44,19 @@ module.exports = function(Box) {
 				$el.find('#positioncount').empty().append(numberOfPositions);
 				$('#globalLoadingBanner').hide();
 				$el.show();
+			}).then(function() {
+				return dataService.getTrainingSet(3, 'random');
+			}).then(function(trainingSet) {
+				console.warn("TRAINING SET RETURNED");
+				console.log(trainingSet);
+			}).then(function() {
+				return dataService.getCombinedTrainingSet([
+					{size: 2, includeOnly: 'random'},
+					{size: 3, includeOnly: 'topXLatest'},
+				]);
+			}).then(function(trainingSet) {
+				console.warn("COMBINED TRAINING SET");
+				console.log(trainingSet);
 			});
 			
 		}
