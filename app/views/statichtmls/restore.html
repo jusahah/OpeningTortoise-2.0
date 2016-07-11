@@ -1,0 +1,47 @@
+<div>
+	<button id="launchRestoreModal" data-toggle="modal" data-target="#restoreModal" style="display: none;"></button>
+				<div class="modal fade" id="restoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="reset_title">Valitse palautuspiste</h4>
+							</div>
+							<div class="modal-body" id="reset_body">
+									<div class="widget-body">
+										<p id="reset_subtitle"><span style="font-size: 11px; color: red;">Huomioithan, että palautuspisteen käyttöönottoa ei voi perua! Tarvittaessa ota ensin oma varmuuskopiosi (Vie-toiminnolla) aineistostasi.</span> </p>
+										
+										<hr>
+
+										<div class="table-responsive">
+											
+												<table class="table table-bordered" id="restores_table">
+													<thead>
+														<tr>
+															<th>Aikamääre </th>
+															<th>Käyttöönotto</th>
+															
+														</tr>
+													</thead>
+													<tbody id="restores_table_body">
+
+
+													</tbody>
+												</table>
+												
+											</div>	
+										</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Peruuta
+								</button>								
+							</div>
+
+						</div>
+					</div>
+				</div>
+				</div>
+</div>				

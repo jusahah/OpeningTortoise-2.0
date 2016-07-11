@@ -1,0 +1,120 @@
+<div>
+							<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false">
+
+								<header>
+									<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+									<h2>Tagit</h2>										
+								</header>
+
+	
+								<div>
+
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+
+									</div>
+									<!-- end widget edit box -->
+
+									<!-- widget content -->
+									<div class="widget-body">
+										<p>Voit selata luotuja muistiinpanoja käyttäen valitttua tagia etsintäkriteerinä.</p>
+										
+										<div class="table-responsive">
+										
+											<table class="table table-bordered" id="tags_table">
+												<thead>
+													<tr>
+														<th>Tagi</th>
+														<th>Muistiinpanojen lkm.</th>
+														<th>Selaa</th>
+
+													</tr>
+												</thead>
+												<tbody id="tagstable_body">
+
+												</tbody>
+											</table>
+											
+										</div>
+
+										<hr>
+
+
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+
+							</div>
+
+
+			<div class="modal fade" data-schemaid="0" id="showEventsWithTagModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="eventhistorybytag_title">Muistiinpanot tagilla: ???</h4>
+								
+							</div>
+							<div class="modal-body" id="eventHistoryByTagBody">
+								<div class="widget-body no-padding">
+
+									<div class="row">
+									
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									
+											<div class="well well-sm">
+												<!-- Timeline Content -->
+												<div class="smart-timeline">
+													<ul class="smart-timeline-list" id="notesbytag_ul">
+																										
+													</ul>
+												</div>
+												<!-- END Timeline Content -->
+									
+											</div>
+									
+										</div>
+									
+									</div>
+									
+
+								</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Sulje
+								</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				</div>
+
+
+
+</div>	
+
+<script>
+
+$(document).ready(function() { 
+	console.error("TABLE SORTED INITS");
+     
+    // call the tablesorter plugin 
+			$("#tags_table").tablesorter({
+				textExtraction: function(node) { 
+				    // extract data from markup and return it 
+				    var sortingCr = $(node).data('sort');
+				    return sortingCr;
+				} 
+
+			}); 
+			
+}); 
+
+</script>		

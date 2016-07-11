@@ -1,0 +1,84 @@
+<div>
+			<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-3" data-widget-editbutton="false" data-widget-custombutton="false">
+				<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+					
+					data-widget-colorbutton="false"	
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true" 
+					data-widget-sortable="false"
+					
+				-->
+				<header>
+					<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+					<h2>Visuaalinen aikajana</h2>	
+									<button id="show30days" class="btn dropdown-toggle btn-xs btn-default" style="float: right; margin: 4px;" data-type="show30">
+												Viim. 30 päivää
+											</button>									
+									<button id="show7days" class="btn dropdown-toggle btn-xs btn-default" style="float: right; margin: 4px;" data-type="show7">
+												Viim. 7 päivää
+											</button>
+					
+				</header>
+
+				<!-- widget div-->
+				<div>
+					
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+						
+					</div>
+					<!-- end widget edit box -->
+					
+					<!-- widget content -->
+					<div class="widget-body" id="timelinearea" style="padding-bottom: 32px;">
+
+						<div id="timeline1" style="width: 100%; height: 200px; margin-left: 20px;"></div>
+
+
+					</div>
+					<!-- end widget content -->
+					
+				</div>
+				<!-- end widget div -->
+				
+			</div>
+
+
+				<!-- end widget grid -->
+</div>				
+
+
+<script>
+
+
+
+
+var testData = [
+  {class: "pA", label: "08.03.2016", times: [
+    {"starting_time": Date.now() - 6 * 60 * 1000 * 60, "ending_time": Date.now()},
+    {"starting_time": Date.now() + 1000 * 60 * 40, "ending_time": Date.now() + 1000 * 60 * 60}]},
+  ];
+var d = new Date();
+var startOfDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+// For better visual we do 1 minute padding 
+var d2 = new Date(startOfDay.getTime() + 86400*1000-60000);
+startOfDay = startOfDay.getTime() + 60000;
+var endOfDay = d2.getTime();
+var chart = d3.timeline().margin({left: 80, right: 0, top: 30, bottom: 30}).beginning(startOfDay).ending(endOfDay).tickFormat({
+	  format: d3.time.format("%H:%M"),
+	  tickTime: d3.time.hours,
+	  tickInterval: 2,
+	  tickSize: 4
+	})
+	.itemHeight(30);
+
+var svg = d3.select("#timeline1").append("svg").attr("width", 900).attr("height", 200)
+  .datum(testData).call(chart);  
+
+</script>

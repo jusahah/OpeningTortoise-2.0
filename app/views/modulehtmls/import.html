@@ -1,0 +1,144 @@
+<div>
+
+			<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-3" data-widget-editbutton="false" data-widget-custombutton="false">
+				<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+					
+					data-widget-colorbutton="false"	
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true" 
+					data-widget-sortable="false"
+					
+				-->
+				<header>
+					<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+					<h2>Datan hallinta</h2>				
+					
+				</header>
+
+				<!-- widget div-->
+				<div>
+					
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+						
+					</div>
+					<!-- end widget edit box -->
+					
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+						
+						<form id="settings-form" class="smart-form" novalidate="novalidate">
+							<header>
+								Tuo / Vie
+							</header>
+							<fieldset>
+							<p>Tuo / Vie -toiminnallisuuksien avulla pystyt siirtämään Aikavahti-aineistosi tietokoneelta toiselle. Voit myös ottaa omia varmuuskopioitasi aineistostasi.
+							</p>
+							<br>
+							<p><span style="color: red; font-size: 11px;">Tärkeää! Tuo-toiminto pyyhkii KAIKEN nykyisen datasi pois, ml. asetukset. Jos nykyinen Aikavahti-aineistosi on Sinulle tärkeä, ota siitä ensin varmuuskopio Vie-toiminnon avulla.</span></p>
+							</fieldset>
+
+
+							<footer>
+								<button type="button" data-type="importfile" class="btn btn-danger">
+									Tuo aineisto (ylikirjoittaa nykyisen datan!)
+								</button>
+								<button type="button" data-type="exportfile" class="btn btn-primary">
+									Vie aineisto
+								</button>								
+							</footer>
+						</form>
+					</div>
+					<!-- end widget content -->
+					
+				</div>
+				<!-- end widget div -->
+				
+			</div>
+			<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-3" data-widget-editbutton="false" data-widget-custombutton="false">
+				<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+					
+					data-widget-colorbutton="false"	
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true" 
+					data-widget-sortable="false"
+					
+				-->
+				<header>
+					<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+					<h2>Kopioi pilveen</h2>				
+					
+				</header>
+
+				<!-- widget div-->
+				<div>
+					
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+						
+					</div>
+					<!-- end widget edit box -->
+					
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+						
+						<form id="importtree-form" class="smart-form" novalidate="novalidate">
+							<header>
+								Kopioi aktiviteettipuu pilvitietokantaan
+							</header>
+							<fieldset>
+							<p>Pilvitietokannan kautta muut henkilöt voivat ladata käyttöönsä saman aktiviteettipuun kuin mikä sinulla on käytössä. Tällä tavoin seurannan tulokset ovat vertailukelpoisia eri henkilöiden kesken. 
+							</p>
+							<br>
+							<p>
+								Pilvitietokannassa sijaitsevat aktiviteettipuun käyttöönotto tapahtuu alustamalla Aikavahti-ohjelma tietokantaan osoittavalla URL-linkillä. Saat haltuusi asianmukaisen URL-linkin kopioinnin päätteeksi.
+							</p>
+							<br>
+							<p><span style="color: red; font-size: 11px;">HUOM! Toiminto kopioi vain aktiviteettipuun rakenteen. Se ei kopioi muita keräämiäsi tietoja.</span></p>
+							</fieldset>
+
+
+							<footer>
+								<button type="button" data-type="copytree" class="btn btn-danger">
+									Kopioi pilveen
+								</button>							
+							</footer>
+						</form>
+					</div>
+					<!-- end widget content -->
+					
+				</div>
+				<!-- end widget div -->
+				
+			</div>
+
+				<!-- end widget grid -->
+<a style="display: none; position: fixed; top: 0; right: 0;" href="#" id="receiveLinkRibbon" class="btn btn-success">Open Receive Ribbon</a>
+</div>		
+
+<script>
+
+			$("#receiveLinkRibbon").click(function(e) {
+		
+				$.SmartMessageBox({
+					title : "Aktiviteettipuu tallennettu pilveen! <i class='txt-color-green glyphicon glyphicon-ok'></i>",
+					content : "Aktiviteettipuun latauslinkki: <span id='downloadlinktotree'></span>",
+					buttons: '[Sulje]'
+				});
+		
+				e.preventDefault();
+			})
+
+</script>		

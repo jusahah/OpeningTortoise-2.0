@@ -1,0 +1,187 @@
+<div>
+			<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-3" data-widget-editbutton="false" data-widget-custombutton="false">
+				<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+					
+					data-widget-colorbutton="false"	
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true" 
+					data-widget-sortable="false"
+					
+				-->
+				<header>
+					<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+					<h2>Lisää tapahtuma aikajanalle</h2>				
+					
+				</header>
+
+				<!-- widget div-->
+				<div>
+					
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+						
+					</div>
+					<!-- end widget edit box -->
+					
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+						
+						<form id="order-form" class="smart-form" novalidate="novalidate">
+							<header>
+								Valitse aktiviteetti/signaali, syötä päivämäärä ja kellonaika
+							</header>
+
+
+							<fieldset>
+								<div class="row">
+									<section class="col col-6">
+										<label class="select">
+											<select name="selecttype" id="typetoadd">
+												<option value="signal">Signaali</option>
+												<option value="activity">Aktiviteetti</option>
+											</select> <i></i> </label>
+									</section>								
+									<section class="col col-6">
+										<label class="select">
+											<select name="selectactivity" id="activitytoadd">
+											</select> <i></i> </label>
+									</section>
+								</div>
+
+								<div class="row">
+									<section class="col col-6">
+										<label class="input"> <i class="icon-append fa fa-calendar"></i>
+											<input type="text" name="startdate" id="activitydate" placeholder="Päivämäärä">
+										</label>
+									</section>
+									<section class="col col-6">
+																
+										<label class="input">
+																
+											<input id="activitytime" type="text" placeholder="Kellonaika">
+																		
+											</label>
+
+																
+									</section>
+
+									<section id="edititem_notes_wrapper" class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													<label class="label">Muistiinpanot</label>
+													<label class="textarea"> 										
+														<textarea id="edititem_notes" rows="2" class="custom-scroll"></textarea> 
+													</label>
+													<div class="note">
+														Muistiinpano maksimissaan 1024 merkkiä. Rajan ylittävät merkit pudotetaan pois.
+													</div>
+									</section>
+								</div>
+
+							</fieldset>
+							<footer>
+								<button data-type="addactivity" type="button" class="btn btn-primary">
+									Lisää aikajanalle
+								</button>
+							</footer>
+						</form>
+
+					</div>
+					<!-- end widget content -->
+					
+				</div>
+				<!-- end widget div -->
+				
+			</div>
+
+							<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+									<h2>Aikajana</h2>
+									<button class="btn dropdown-toggle btn-xs btn-primary" style="float: right; margin: 4px;" data-type="activities_showall">
+												Kaikki
+											</button>
+									<button class="btn dropdown-toggle btn-xs btn-warning" style="float: right; margin: 4px;" data-type="activities_show30">
+												Viimeiset 30 päivää
+											</button>
+								</header>
+
+								<!-- widget div-->
+								<div>
+
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+
+									</div>
+									<!-- end widget edit box -->
+
+									<!-- widget content -->
+									<div class="widget-body">
+										<p>Voit oikean laidan painikkeita käyttämällä lisätä ja poistaa aktiviteetteja
+										aikajanallesi. </p>
+										
+										<div class="table-responsive">
+										
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>Tyyppi</th>
+														<th>Nimi</th>
+														<th>Kellonaika</th>
+														<th>Päivämäärä</th>
+														<th>Muistiinpanot</th>
+														<th>Poista</th>
+													</tr>
+												</thead>
+												<tbody id="managetimeline_body">
+
+												</tbody>
+											</table>
+											
+										</div>
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+							</div>
+</div>
+
+<script>
+			$('#activitytime').clockpicker({
+				placement: 'top',
+			    donetext: 'Valmis'
+			});
+			
+
+			// START AND FINISH DATE
+			$('#activitydate').datepicker({
+				dateFormat : 'dd.mm.yy',
+				prevText : '<i class="fa fa-chevron-left"></i>',
+				nextText : '<i class="fa fa-chevron-right"></i>',
+				onSelect : function(selectedDate) {
+					
+				}
+			});
+
+
+			</script>				

@@ -1,0 +1,118 @@
+<div>
+
+			<div class="jarviswidget" id="wid-id-3" data-widget-editbutton="false" data-widget-custombutton="false">
+				<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+					
+					data-widget-colorbutton="false"	
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true" 
+					data-widget-sortable="false"
+					
+				-->
+				<header>
+					<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+					<h2>Asetukset </h2>				
+					
+				</header>
+
+				<!-- widget div-->
+				<div>
+					
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+						
+					</div>
+					<!-- end widget edit box -->
+					
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+						
+						<form id="settings-form" class="smart-form" novalidate="novalidate">
+							<header>
+								Data-asetukset
+							</header>
+
+
+							<fieldset>
+
+								<div class="row">
+									<section class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<label class="label">Jatkuva datan tallennus levylle?</label>
+										<label class="select">
+											<select name="writeToDiskAfterEveryUpdate" id="writeToDiskAfterEveryUpdate_el">
+												<option value="0">Ei</option>
+												<option value="1">Kyllä (suositus)</option>
+											</select> <i></i> 
+										</label>
+										<span style="font-size: 11px; color: #222;">Jos vastaat "Kyllä", Aikavahti tallentaa aineistosi levylle jokaisen muutoksen yhteydessä. Jos vastaat "Ei", Aikavahti tallentaa aineistosi levylle vasta sulkiessasi ohjelman. <strong>HUOM!</strong> Mahdollinen ohjelman ennenaikainen sulkeutuminen saattaa johtaa keräämiesi tietojen häviämiseen jos olet valinnut "Ei"!</span>										
+									</section>
+								</div>	
+
+								<div class="row">	
+									<section class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<label class="label">Palautuspisteen käyttö?</label>
+										<label class="select">
+											<select name="restorePoint" id="restorePoint_el">
+												<option value="0">Ei</option>
+												<option value="1">Kyllä (suositus)</option>
+											</select> <i></i> 
+										</label>
+										<span style="font-size: 11px; color: #222;">Jos vastaat "Kyllä", Aikavahti ottaa varmuuskopion datastasi aina avatessasi ohjelman. Mikäli ohjelman käytön aikana tapahtuu datan korruptoitumista, voit palauttaa datan ennalleen varmuuskopion avulla.</span>
+									</section>									
+								</div>
+
+
+							</fieldset>
+			
+							<!--
+							<header>
+								Internet-asetukset
+							</header>
+
+							<fieldset>
+								<div class="row">
+									<section class="col col-6">
+									<label class="label">Varmuuskopiointi online-tietokantaan?</label>
+										<label class="select">
+											<select name="onlineBackup" id="onlineBackup_el">
+												<option value="0">Ei</option>
+												<option value="1">Kyllä</option>
+											</select> <i></i> 
+										</label>
+									</section>
+									<section class="col col-6">
+										<label class="label">Varmuuskopioavain</label>
+										<label class="input">
+											<input type="text" name="backupKey" id="backupKey_el" placeholder="Syötä yksilöllinen kopioavaimesi">
+										</label>
+									</section>
+								</div>
+
+
+							</fieldset>
+
+							-->
+
+							<footer>
+								<button type="button" data-type="savesettings" class="btn btn-primary">
+									Tallenna asetukset
+								</button>
+							</footer>
+						</form>
+					</div>
+					<!-- end widget content -->
+					
+				</div>
+				<!-- end widget div -->
+				
+			</div>
+
+
+				<!-- end widget grid -->
+</div>				

@@ -1,0 +1,229 @@
+<div>
+							<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false">
+
+								<header>
+									<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+									<h2>Signaalit</h2>										
+								</header>
+
+	
+								<div>
+
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+
+									</div>
+									<!-- end widget edit box -->
+
+									<!-- widget content -->
+									<div class="widget-body">
+										<p>Voit luoda ja poistaa signaaleja. Poistaessasi signaalin kaikki sen signaalitapahtumat poistetaan myös. Signaalin päivätavoitetta ei ole mahdollista muuttaa luonnin jälkeen.</p>
+										
+										<div class="table-responsive">
+										
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>Signaali</th>
+														<th>Päivätavoite</th>
+														<th>Muokkaa</th>
+														<th>Poista</th>
+													</tr>
+												</thead>
+												<tbody id="signalstable_body">
+
+												</tbody>
+											</table>
+											
+										</div>
+
+										<hr>
+
+										<button type="button" class="btn btn-success" data-toggle="modal" data-target="#createSignalModal">
+											Luo uusi
+										</button>
+
+
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+
+							</div>
+
+			<div class="modal fade" id="deletesignalModal" data-payload="0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="individual_stats_title">Vahvista signaalin poisto: <span id="signalname"></span></h4>
+								
+								
+							</div>
+							<div class="modal-body" id="deleteSignalItemModalBody">
+								<p>HUOM! Toimenpide poistaa tätä signaalia koskevat signaalitapahtumat aikajanaltasi!</p>
+							<div class="modal-footer">
+								<button id="confirmdeletesignal" class='btn btn-danger' data-dismiss="modal" data-type="confirmsignaldeletion" data-payload="">Vahvista poisto</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">
+									Peruuta
+								</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				</div>
+
+			<div class="modal fade" id="createSignalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="individual_stats_title">Uuden signaalin luonti</h4>
+								
+							</div>
+							<div class="modal-body" id="signalCreationBody">
+								<div class="widget-body no-padding">
+									
+									<div id="newsignal-form" class="smart-form" novalidate="novalidate">
+			
+
+
+											<fieldset>
+												<div class="row">
+												<div class="col col-6">
+													<section>
+														<label class="label">Signaalin nimi</label>
+														<label class="input">
+															<input type="text" name="newsignalname" id="newsignalname_el" placeholder="Syötä uusi nimi">
+														</label>
+													</section>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col col-6">
+													<section>
+														<label class="label">Päivätavoitteen täyttymisehto: </label>
+														<label class="select">	
+															<select class="select" name="signalitemcomp" id="signalitemcomp_el">
+																<option value="dd">(poissa käytöstä)</option>
+																<option value="gt">Enemmän kuin</option>
+																<option value="le">Vähemmän tai yhtä paljon kuin</option>
+															</select><i></i>
+														</label>
+													</section>
+													</div>
+													<div class="col col-6">
+													<section>
+														<label class="label">Kpl-määrä</label>
+														<label class="input">
+															<input type="number" name="signalitemboundary" id="signalitemboundary_el" placeholder="Syötä kokonaisluku">
+														</label>
+													</section>
+													</div>
+												</div>
+
+											</fieldset>	
+
+						
+									</div>
+								</div>
+							<div class="modal-footer">
+								<button id="submitNewSignal" class='btn btn-success' data-dismiss="modal" data-type="submitNewSignal" data-payload="">Luo</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">
+									Peruuta
+								</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				</div>
+
+			<div class="modal fade" data-signalid="0" id="editSignalItemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title">Muokkaa signaalin tietoja</h4>
+								
+							</div>
+							<div class="modal-body" id="signalItemEditBody">
+								<div class="widget-body no-padding">
+									
+									<div id="editsignalitem-form" class="smart-form" novalidate="novalidate">
+											<header>
+												Yleiset tiedot
+												</header>
+											<fieldset>
+												<div class="row">
+												<div class="col col-6">
+													<section>
+														<label class="label">Signaalin nimi</label>
+														<label class="input">
+															<input type="text" name="newsignalnameedit" id="newsignalnameedit_el" placeholder="Syötä uusi nimi">
+														</label>
+													</section>
+													</div>
+												</div>
+											</fieldset>
+											<header>
+												Päivätavoite
+												</header>											
+											<fieldset>	
+
+												<div class="row">
+
+													<div class="col col-6">
+													<section>
+														<label class="label">Täyttymisehto: </label>
+														<label class="select">	
+															<select class="select" name="signalitemcompedit" id="signalitemcompedit_el">
+																<option value="dd">(poissa käytöstä)</option>
+																<option value="gt">Enemmän kuin</option>
+																<option value="le">Vähemmän tai yhtä paljon kuin</option>
+															</select><i></i>
+														</label>
+													</section>
+													</div>
+													<div class="col col-6">
+													<section>
+														<label class="label">Kpl-määrä</label>
+														<label class="input">
+															<input type="number" name="signalitemboundaryedit" id="signalitemboundaryedit_el" placeholder="Syötä kokonaisluku">
+														</label>
+													</section>
+													</div>												
+												</div>
+
+											</fieldset>			
+
+
+
+						
+									</div>
+								</div>
+							<div class="modal-footer">
+								<button id="submitEditSignalItem_el" class='btn btn-success' data-dismiss="modal" data-type="submitEditSignalItem" data-payload="">Tallenna</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">
+									Peruuta
+								</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				</div>
+
+</div>	
+
+		

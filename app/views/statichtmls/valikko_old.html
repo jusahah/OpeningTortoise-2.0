@@ -1,0 +1,87 @@
+			<nav id="aikavahti_nav">
+				<!-- 
+				NOTE: Notice the gaps after each icon usage <i></i>..
+				Please note that these links work a bit different than
+				traditional href="" links. See documentation for details.
+				-->
+
+				<ul id="aikavahti_mainmenu">
+					<li class="aikavahtilink">
+						<a><i class="fa fa-lg fa-fw fa-calendar txt-color-blue"></i> <span class="menu-item-parent">Luo muistiinpano</span></a>
+						<ul>
+							<li class="aikavahtilink" data-type="stats-route" data-payload="today">
+								<a>Kuvakaappaus + teksti</a>
+							</li>
+							<li class="aikavahtilink" data-type="stats-route" data-payload="week">
+								<a>Lyhyt teksti</a>
+							</li>
+							<li class="aikavahtilink" data-type="stats-route" data-payload="week">
+								<a>Pitkä teksti</a>
+							</li>							
+							<li class="aikavahtilink" data-type="stats-route" data-payload="month">
+								<a>Ääni</a>
+							</li>	
+							<li class="aikavahtilink" data-type="stats-route" data-payload="year"> 
+								<a>Piirros</a>
+							</li>																			
+						</ul>
+					</li>
+					<li class="aikavahtilink">
+						<a><i class="fa fa-lg fa-fw fa-calendar txt-color-blue"></i> <span class="menu-item-parent">Asetukset</span></a>
+						<ul>
+							<li class="aikavahtilink" data-type="stats-route" data-payload="today">
+								<a>Näppäinkombot</a>
+							</li>
+							<li class="aikavahtilink" data-type="stats-route" data-payload="week">
+								<a>Palvelin-asetukset</a>
+							</li>
+							<li class="aikavahtilink" data-type="stats-route" data-payload="week">
+								<a>Yleiset asetukset</a>
+							</li>																									
+						</ul>
+					</li>
+
+
+				
+
+
+
+				</ul>
+			</nav>
+			<a style="display: none; position: fixed; top: 0; right: 0;" href="#" id="quitNoSave" class="btn btn-success">Open Quit Problem Modal</a>
+			<a style="display: none; position: fixed; top: 0; right: 0;" href="#" id="quitWithSave" class="btn btn-success">Open Quit OK Modal</a>
+			<script>
+
+			$("#quitNoSave").click(function(e) {
+		
+				$.SmartMessageBox({
+					title : "Aineiston tallennus epäonnistui! <i class='txt-color-red fa fa-times'></i>",
+					content : "Ohjelma ei onnistunut kirjoittamaan aineistoa levylle. Jos suljet ohjelman, saatat menettää ohjelman ajon aikana keräämiäsi tietoja. Haluatko silti sulkea?",
+					buttons : '[Kyllä][En]'
+				}, function(ButtonPressed) {
+					if (ButtonPressed === "Kyllä") {
+						Box.Application.broadcast('forceQuitAfterSaveFailure');
+					}
+					if (ButtonPressed === "En") {
+						console.log("Ohjelman sulkeminen peruttiin.")
+					}
+		
+				});
+		
+				e.preventDefault();
+			})
+			$("#quitWithSave").click(function(e) {
+		
+				$.SmartMessageBox({
+					title : "Aineisto tallennettu! <i class='txt-color-green glyphicon glyphicon-ok'></i>",
+					content : "",
+					buttons: '[Suljetaan...]'
+				});
+		
+				e.preventDefault();
+			})
+			</script>
+
+																		
+
+								

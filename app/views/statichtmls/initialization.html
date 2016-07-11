@@ -1,0 +1,108 @@
+<div>
+	<button id="launchInitializationModal" data-toggle="modal" data-target="#initializationModal" style="display: none;"></button>
+				<div class="modal fade" id="initializationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="individual_stats_title"></h4>
+							</div>
+							<div class="modal-body" id="individual_stats_body">
+									<div class="widget-body">
+										<p id="individual_stats_subtitle"><strong>Tervetuloa käyttämään Aikavahti 2.0 työpöytäohjelmaa!</strong> </p>
+										<p>Näyttää siltä, että käytät ohjelmaa ensimmäistä kertaa tällä tietokoneella! Kysymme Sinulta seuraavaksi muutamia asetuksia, jotta ohjelman käyttösi onnistuu mahdollisimman sujuvasti.</p>
+										<p>Voit halutessasi skipata asetusten määrittämisen. Klikkaa "Käytä default-asetuksia" painiketta.</p>
+										<p style="color: red; font-size: 11px;">HUOM! Jos aiot ladata (import) valmiin aineiston, voit suosiolla skipata asetusten määrittämisen. Ohjelman asetukset määritetään lataamasi tiedoston pohjalta.</p>
+										<hr>
+									</div>
+									<div class="widget-body no-padding">
+
+
+										
+										<form id="settings-form" class="smart-form" novalidate="novalidate">
+	
+
+
+											<fieldset>
+												<div class="row">
+													<section class="col">
+										
+													<label class="toggle label">Jatkuva datan tallennus levylle?
+														<input type="checkbox" name="writetodisk" id="writetodiskcheckbox" checked="checked">
+														<i data-swchon-text="Kyllä" data-swchoff-text="Ei"></i>
+													</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col">
+										
+													<label class="toggle label">Lataa aktiviteettipuu netistä?
+														<input type="checkbox" id="activitytreecheckbox" name="downloadactivitytree" data-type="downloadactivitytree_change">
+														<i data-swchon-text="Kyllä" data-swchoff-text="Ei"></i>
+													</label>
+													<label class="input">
+														<input type="text" id="activitytreeurl" placeholder="Syötä URL" style="display: none;">
+													</label>
+													</section>
+
+												</div>
+											
+
+											</fieldset>
+											<fieldset>
+												<div class="row">
+													
+													<section class="col">
+										
+													<label class="toggle label">Palautuspisteen käyttö?
+														<input type="checkbox" id="restorepointcheckbox" name="restorePoint" data-type="restorepoint_change">
+														<i data-swchon-text="Kyllä" data-swchoff-text="Ei"></i>
+													</label>
+													</section>
+												</div>
+
+
+											</fieldset>							
+
+	
+										</form>
+									</div>
+
+							<div class="modal-footer">
+								<button type="button" id="closeInitModal" data-dismiss="modal" style="display: none;">
+									(Sulje)
+								</button>
+								<button type="button" class="btn btn-success" data-type="usecustomsettings">
+									Tallenna uudet asetukset
+								</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal" data-type="usedefaultsettings">
+									Käytä default-asetuksia
+								</button>								
+							</div>
+
+						</div>
+					</div>
+				</div>
+				</div>
+
+				<a style="display: none; position: fixed; top: 0; right: 0;" href="#" id="downloadRibbon" class="btn btn-success">Open Download Activity Tree Ribbon</a>
+</div>	
+
+
+
+<script>
+
+
+			$("#downloadRibbon").click(function(e) {
+		
+				$.SmartMessageBox({
+					title : "Ladataan aktiviteettipuuta internetistä...",
+					content : "<span id='downloadStatus'>Lataus kesken...</span>",
+					buttons: '[<span id="cancelDownload">Peruuta</span>]'
+				});
+		
+				e.preventDefault();
+			})
+			</script>			

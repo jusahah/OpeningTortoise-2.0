@@ -1,0 +1,239 @@
+<div>
+							<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false">
+
+								<header>
+									<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+									<h2>Aktiviteetit - ajankäytön jakauma</h2>
+									<button id="showall" class="btn dropdown-toggle btn-xs btn-default" style="float: right; margin: 4px;" data-type="activities_showall">
+												Kaikki
+											</button>
+									<button id="showleaves" class="btn dropdown-toggle btn-xs btn-default" style="float: right; margin: 4px;" data-type="activities_showleaves">
+												Vain alin taso
+											</button>
+									<button id="showroots" class="btn dropdown-toggle btn-xs btn-default" style="float: right; margin: 4px;" data-type="activities_showroots">
+												Vain ylin taso
+											</button>											
+								</header>
+
+	
+								<div>
+
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+
+									</div>
+									<!-- end widget edit box -->
+
+									<!-- widget content -->
+									<div class="widget-body">
+										<p>Voit oikean ylälaidan painikkeita käyttämällä valita mitkä aktiviteetit näytetään</p>
+										
+										<div class="table-responsive">
+										
+											<table class="table table-bordered tablesorter" id="activities_table_sortable">
+												<thead>
+													<tr>
+														<th>Aktiviteetti<i class="fa-sort" style="float: right;"></i> </th>
+														<th>Kokonaisaika<i class="fa-sort" style="float: right;"></i></th>
+													</tr>
+												</thead>
+												<tbody id="statstable_body">
+												<tr>
+												<td>4</td><td>4</td>
+												</tr>
+												</tbody>
+											</table>
+											
+										</div>
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+							</div>
+
+							<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false">
+
+								<header>
+									<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+									<h2>Signaalit - määrät eri ajanjaksoina</h2>										
+								</header>
+
+	
+								<div>
+
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+
+									</div>
+									<!-- end widget edit box -->
+
+									<!-- widget content -->
+									<div class="widget-body">
+										<p>Eri signaalien lukumäärät valitulla ajanjaksolla.</p>
+										
+										<div class="table-responsive">
+										
+											<table class="table table-bordered tablesorter" id="signals_table_sortable">
+												<thead>
+													<tr>
+														<th>Signaali<i class="fa-sort" style="float: right;"></i> </th>
+														<th>Lukumäärä<i class="fa-sort" style="float: right;"></i></th>
+													</tr>
+												</thead>
+												<tbody id="signals_table_body">
+
+												</tbody>
+											</table>
+											
+										</div>
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+							</div>
+
+				<div class="modal fade" id="individualStatsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="individual_stats_title"></h4>
+								<br/>
+								<p id="individual_stats_goalstring" style="font-style: italic;"></p>
+							</div>
+							<div class="modal-body" id="individual_stats_body">
+									<div class="widget-body">
+										<p id="individual_stats_subtitle"> </p>
+										
+										<div class="table-responsive">
+										
+											<table class="table table-bordered tablesorter" id="individual_statstable">
+												<thead>
+													<tr>
+														<th>Päivä<i class="fa-sort" style="float: right;"></i> </th>
+														<th>Kokonaisaika<i class="fa-sort" style="float: right;"></i> </th>
+														<th>Visualisointi </th>
+														<th>Tavoite</th>
+													</tr>
+												</thead>
+												<tbody id="individual_statstable_body">
+
+
+												</tbody>
+											</table>
+											
+										</div>
+									</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Sulje
+								</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				</div>
+
+				<div class="modal fade" id="individualSignalStatsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="individual_signalstats_title"></h4>
+								<br/>
+								<p id="individual_signalstats_goalstring" style="font-style: italic;"></p>
+							</div>
+							<div class="modal-body" id="individual_signalstats_body">
+									<div class="widget-body">
+										<p id="individual_signalstats_subtitle"> </p>
+										
+										<div class="table-responsive">
+										
+											<table class="table table-bordered tablesorter" id="individual_signalstatstable">
+												<thead>
+													<tr>
+														<th>Päivä<i class="fa-sort" style="float: right;"></i> </th>
+														<th>Kokonaisaika<i class="fa-sort" style="float: right;"></i> </th>
+														<th>Tavoite</th>
+													</tr>
+												</thead>
+												<tbody id="individual_signalstatstable_body">
+
+
+												</tbody>
+											</table>
+											
+										</div>
+									</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Sulje
+								</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				</div>
+</div>
+
+<script>
+
+$(document).ready(function() { 
+	console.error("TABLE SORTED INITS");
+     
+    // call the tablesorter plugin 
+			$("#activities_table_sortable").tablesorter({
+				textExtraction: function(node) { 
+				    // extract data from markup and return it 
+				    var sortingCr = $(node).data('sort');
+				    return sortingCr;
+				} 
+
+			}); 
+
+			$("#signals_table_sortable").tablesorter({
+				textExtraction: function(node) { 
+				    // extract data from markup and return it 
+				    var sortingCr = $(node).data('sort');
+				    return sortingCr;
+				} 
+
+			}); 
+
+			$('#individual_statstable').tablesorter({
+				textExtraction: function(node) { 
+				    // extract data from markup and return it 
+				    var sortingCr = $(node).data('sort');
+				    return sortingCr;
+				} 
+
+			}); 
+
+			$('#individual_signalstatstable').tablesorter({
+				textExtraction: function(node) { 
+				    // extract data from markup and return it 
+				    var sortingCr = $(node).data('sort');
+				    return sortingCr;
+				} 
+
+			}); 			
+}); 
+
+</script>
+
+
+
+			
+		
