@@ -12,6 +12,9 @@ module.exports = function(Box) {
 
 	// Private work-horse function
 	var analyzeGame = function() {
+
+		if (stopRequested) return;
+
 		var dataService = Box.Application.getService('dataService');
 
 		// Ask for game and later perhaps also for settings (like num of engine instances)
@@ -24,7 +27,7 @@ module.exports = function(Box) {
 				_.delay(function(analyzedGame) {
 					console.warn("GAME ANALYZED: " + analyzedGame._id)
 					resolve(analyzedGame);
-				}, 1000, game);
+				}, 3000, game);
 			})
 		})
 		.then(function(analyzedGame) {
@@ -35,6 +38,7 @@ module.exports = function(Box) {
 			console.log("AMOUNT LEFT IN CONTROLLER:" + amountLeft);
 			Box.Application.broadcast('pendingGamesUpdate', amountLeft);
 		})
+		.then(analyzeGame) // Loop back to beginning to analyze next game
 		.catch(NoGamesError, function() {
 			console.log("ANALYSIS CONTROLLER: No games available");
 			Box.Application.broadcast('pendingGamesUpdate', 0);
