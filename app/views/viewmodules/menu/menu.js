@@ -13,6 +13,15 @@ module.exports = function(Box) {
 		var currentNow = null;
 		var $currentPanelWrapper = $el.find('#frontshowpanel');	
 
+		var pendingGamesAmountChanged = function(newAmount) {
+			$el.find('#pendinggamesamount').empty().append(newAmount);
+		}
+
+		var enginesRunningAmountChanged = function(newAmount) {
+			// Handle differently if zero (turn red or something)
+			$el.find('#enginesrunningamount').empty().append(newAmount);
+		}
+
 		var reshowCurrentView = function() {
 			if (current) {
 				Box.Application.broadcast('routechanged', {route: current, payload: null});
@@ -117,24 +126,47 @@ module.exports = function(Box) {
 			ipcRenderer.send('appShutDown');
 		}
 
+
+		//
+		// Analysis stuff
+		//
+		var sendAnalysisResumeRequest = function() {
+			var analysisService = context.getService('analysisService');
+			analysisService.resumeAnalysis();
+		}
+
 		console.log("INITING VALIKKO VIEW MODULE");
 		return {
 			messages: ['currenteventupdate', 'initFirstView', 'forceQuitAfterSaveFailure'],
 			onclick: function(event, element, elementType) {
-
-				if (elementType.split('-')[1] === 'route') {
+				var actionType = elementType.split('-')[1];
+				if (actionType === 'route') {
 					var moduleName = elementType.split('-')[0]; // what module to activate
 					console.log("Route changing link clicked: " + elementType);
 					var payload = $(element).data('payload'); // Additional data to send to module
 					// Changing a route
 					handleRouteChange(element, moduleName, payload);
 
-
+				} else if (actionType === 'action') {
+					var action = elementType.split('-')[0];
+					if (action === 'analyze') {
+						return sendAnalysisResumeRequest();
+					}
 				}
 
 				
 			},
 			onmessage: function(name, data) {
+				// Handles msgs regarding games to be analyzed either inc or dec.
+				if (name === 'pendingGamesUpdate') {
+					return pendingGamesAmountChanged(data);
+				}
+
+				if (name === 'enginesRunningUpdate') {
+					return enginesRunningAmountChanged(data);
+				}
+
+				/*
 				if (name === 'cachewasflushed') {
 					reshowCurrentView();
 				} else if (name === 'computationprogressupdate') {
@@ -149,6 +181,7 @@ module.exports = function(Box) {
 				} else if (name === 'forceQuitAfterSaveFailure') {
 					forceShutDown();
 				}
+				*/
 
 			}
 

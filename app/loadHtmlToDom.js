@@ -7,3 +7,4 @@ console.log("INIT: LOADING HTMLS TO DOM")
 // VIEW MODULES
 $('#screenshotContainer').load('views/viewmodules/screenshot/screenshot.html');
 $('#textnoteContainer').load('views/viewmodules/textnote/textnote.html');
+$('#pgnuploadContainer').load('views/viewmodules/pgnupload/pgnupload.html');

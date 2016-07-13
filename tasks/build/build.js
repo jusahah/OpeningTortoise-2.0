@@ -19,6 +19,7 @@ var destDir = projectDir.cwd('./build');
 
 var paths = {
     copyFromAppDir: [
+        './bgservices/**',
         './test/**',
         './node_modules/**',
         './helpers/**',

@@ -21,10 +21,15 @@ var appDir = jetpack.cwd(app.getAppPath());
 * All data fetch/insert actions go through dataAPI
 * 
 */
-var dataAPI = require('./dataLayer/entry')(app.getAppPath() + "/teststore"); // Opens db sync!
+var dataAPI = require('./dataLayer/entry')(
+	app.getAppPath() + "/teststore", // Data path for user collected data
+	app.getAppPath() + "/pendinggames" // Data path temporary pending games
+); // Opens db sync!
+
 dataAPI.runSeed(4); // Only for testing
 
-
+// BACKGROUND SERVICES
+var analysisController = require('./bgservices/analysisController')(Box);
 
 // SERVICES REGISTRATION
 // Args: Box, path_to_the_temporary_file_folder
@@ -32,8 +37,9 @@ dataAPI.runSeed(4); // Only for testing
 require('./services/util/screenshot')(Box, app.getAppPath()); // Screenshotting tool
 require('./services/processCommunication')(Box); // Communication API with background process
 require('./services/dataService')(Box, dataAPI); // Provides extra functions for managing data
+require('./services/inputService')(Box, dataAPI); // Handles uploading data into app
 
-
+require('./services/analysisService')(Box, analysisController); // Handles analysis requests
 
 
 // VIEW MODULES REGISTRATION
@@ -41,7 +47,11 @@ require('./services/dataService')(Box, dataAPI); // Provides extra functions for
 require('./views/viewmodules/menu/menu')(Box);
 require('./views/viewmodules/screenshot/screenshot')(Box);
 require('./views/viewmodules/textnote/textnote')(Box);
+require('./views/viewmodules/pgnupload/pgnupload')(Box);
 require('./views/viewmodules/errors/errors')(Box);
+
+
+
 
 
 
@@ -53,6 +63,10 @@ setTimeout(function() {
 		debug: true
 	});
 	// Show the app
+
+	// Start up bg services
+	analysisController.start();
+
 	$('#appScreen').show();
 }, 300);
 

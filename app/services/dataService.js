@@ -1,5 +1,6 @@
 var _ = require('lodash');
 var Promise = require('bluebird');
+var uuid = require('node-uuid');
 
 module.exports = function(Box, dataAPI) {
 	Box.Application.addService('dataService', function(application) {
@@ -66,6 +67,14 @@ module.exports = function(Box, dataAPI) {
 	    	
 	    }
 
+	    var getPendingGame = function() {
+	    	return dataAPI.getPendingGame();
+	    }
+	    // Note! Promise returned gets eventually num of games left in db
+	    var removeAnalyzedGame = function(gameID) {
+	    	return dataAPI.removeAnalyzedGame(gameID).then(dataAPI.countPendingGames);
+	    }
+
 
 	    return {
 	    	needCount: needCount,
@@ -74,7 +83,9 @@ module.exports = function(Box, dataAPI) {
 	        train: train,
 	        occur: occur,
 	        getTrainingSet: getTrainingSet,
-	        getCombinedTrainingSet: getCombinedTrainingSet
+	        getCombinedTrainingSet: getCombinedTrainingSet,
+	        getPendingGame: getPendingGame,
+	        removeAnalyzedGame: removeAnalyzedGame,
 
 	    };
 	});
