@@ -25,7 +25,11 @@ module.exports = function(Box, dataAPI) {
 	    		return {_id: uuid.v4(), pgn: pgn};
 	    	});
 
-	    	return dataAPI.addPendingGames(games);
+	    	return dataAPI.addPendingGames(games)
+	    	.then(dataAPI.countPendingGames)
+	    	.then(function(totalNumOfGames) {
+	    		Box.Application.broadcast('pendingGamesUpdate', totalNumOfGames);
+	    	});
 	    }
 
 		return {

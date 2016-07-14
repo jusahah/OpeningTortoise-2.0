@@ -17,6 +17,10 @@ module.exports = function(Box) {
 			$el.find('#pendinggamesamount').empty().append(newAmount);
 		}
 
+		var updatePositionsInDBCount = function(newCount) {
+			console.log("MENU: Update position count: " + newCount);
+		}
+		
 		var enginesRunningAmountChanged = function(newAmount) {
 			// Handle differently if zero (turn red or something)
 			$el.find('#enginesrunningamount').empty().append(newAmount);
@@ -127,6 +131,8 @@ module.exports = function(Box) {
 		}
 
 
+
+
 		//
 		// Analysis stuff
 		//
@@ -137,7 +143,14 @@ module.exports = function(Box) {
 
 		console.log("INITING VALIKKO VIEW MODULE");
 		return {
-			messages: ['currenteventupdate', 'initFirstView', 'forceQuitAfterSaveFailure'],
+			messages: [
+			'currenteventupdate', 
+			'initFirstView', 
+			'forceQuitAfterSaveFailure',
+			'pendingGamesUpdate',
+			'enginesRunningUpdate',
+			'positionsInDBUpdate'
+			],
 			onclick: function(event, element, elementType) {
 				var actionType = elementType.split('-')[1];
 				if (actionType === 'route') {
@@ -164,6 +177,10 @@ module.exports = function(Box) {
 
 				if (name === 'enginesRunningUpdate') {
 					return enginesRunningAmountChanged(data);
+				}
+
+				if (name === 'positionsInDBUpdate') {
+					return updatePositionsInDBCount(data);
 				}
 
 				/*
