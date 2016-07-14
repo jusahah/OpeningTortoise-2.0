@@ -13,7 +13,9 @@ module.exports = function(Box) {
 	// Private work-horse function
 	var analyzeGame = function() {
 
-		if (stopRequested) return;
+		if (stopRequested) {
+			return Box.Application.broadcast('enginesRunningUpdate', false);
+		}
 
 		var dataService = Box.Application.getService('dataService');
 
@@ -23,6 +25,7 @@ module.exports = function(Box) {
 			// Fake this for now
 			if (!game) throw new NoGamesError();
 			analysisRunning = true;
+			Box.Application.broadcast('enginesRunningUpdate', true);
 			return new Promise(function(resolve, reject) {
 				_.delay(function(analyzedGame) {
 					console.warn("GAME ANALYZED: " + analyzedGame._id)
@@ -42,6 +45,7 @@ module.exports = function(Box) {
 		.catch(NoGamesError, function() {
 			console.log("ANALYSIS CONTROLLER: No games available");
 			Box.Application.broadcast('pendingGamesUpdate', 0);
+			Box.Application.broadcast('enginesRunningUpdate', false);
 		});	
 	}
 

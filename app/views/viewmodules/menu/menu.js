@@ -20,10 +20,10 @@ module.exports = function(Box) {
 		var updatePositionsInDBCount = function(newCount) {
 			console.log("MENU: Update position count: " + newCount);
 		}
-		
-		var enginesRunningAmountChanged = function(newAmount) {
+
+		var enginesRunningAmountChanged = function(isRunning) {
 			// Handle differently if zero (turn red or something)
-			$el.find('#enginesrunningamount').empty().append(newAmount);
+			$el.find('#enginesrunningamount').empty().append(isRunning ? 'running' : 'idle');
 		}
 
 		var reshowCurrentView = function() {
