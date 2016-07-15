@@ -15,7 +15,8 @@
     "nedb": "^1.8.0",
     "node-uuid": "^1.4.7",
     "shelljs": "^0.7.0",
-    "t3js": "^2.4.0"
+    "t3js": "^2.4.0",
+    "threads": "^0.6.1"
   },
   "packageNameTemplate": "{{name}}-v{{version}}-{{platform}}-{{arch}}",
   "osx": {

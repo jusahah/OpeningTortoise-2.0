@@ -2,10 +2,11 @@
 *
 * DEPS AND STUFF
 */
-import { app, Menu } from 'electron';
+import { app, Menu, BrowserWindow } from 'electron';
 import { devMenuTemplate } from './helpers/dev_menu_template';
 import { editMenuTemplate } from './helpers/edit_menu_template';
 import createWindow from './helpers/window';
+
 
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
@@ -15,7 +16,18 @@ var ipcMain = require('electron').ipcMain;
 var uuid    = require('node-uuid');
 var Promise = require('bluebird');
 
+var processPGNs = require('./external_process_services/processPGNs')
 
+var threads = require('threads');
+var config  = threads.config;
+var spawn   = threads.spawn;
+
+config.set({
+  basepath : {
+    browser : 'http://myserver.local/thread-scripts',
+    node    : __dirname + '/external_process_services'
+  }
+});
 
 
 
@@ -70,6 +82,36 @@ var msgListenerFunction = require('./ipcWrapper')
 // Note that each must return Promise!
 msgListenerFunction('test', function(incData) {
     return Promise.resolve(incData + 1);
+});
+
+
+msgListenerFunction('pgnParsingNeeded', function(pgnData) {
+    // Parsing is done on separate thread provided by our threads library
+    console.log("processPGNs below");
+    console.log(processPGNs);
+
+    return new Promise(function(resolve, reject) {
+        var thread = spawn('processPGNs');
+
+        thread
+        .send(pgnData)
+        // The handlers come here: (none of them is mandatory) 
+        .on('message', function(response) {
+            resolve(response);
+            thread.kill();
+        })
+        .on('error', function(error) {
+            reject(error);
+            console.error('Worker errored:', error);
+            thread.kill();
+        })
+        .on('exit', function() {
+            console.log('Worker has been terminated.');
+        }); 
+    });
+ 
+
+    
 });
 
 

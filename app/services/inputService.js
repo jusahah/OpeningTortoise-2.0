@@ -1,8 +1,7 @@
 var _ = require('lodash');
 var Promise = require('bluebird');
 var uuid = require('node-uuid');
-
-var processPGNs = require('./processPGNs');
+var fs = require('fs');
 
 module.exports = function(Box, dataAPI) {
 	Box.Application.addService('inputService', function(application) {
@@ -38,6 +37,9 @@ module.exports = function(Box, dataAPI) {
 	    var uploadFromPGNFile = function(filepath) {
 
 	    	console.log("UPLOAD FROM PGN FILE IN SERVICE LAYER");
+	    	console.log(filepath);
+
+	    	var ipc = application.getService('processCommunication');
 
 	    	return new Promise(function(resolve, reject) {
 	    		fs.readFile(filepath, "utf8", function(err, pgnText) {
@@ -46,8 +48,13 @@ module.exports = function(Box, dataAPI) {
 	    		});
 	    	})
 	    	.then(function(pgnText) {
-	    		var parseInfo = processPGNs(pgnText);
-	    		return parseInfo.games;	    		
+	    		console.log("Sending to bg process for parsing");
+	    		return ipc.sendToBackgroundProcess({eventname: 'pgnParsingNeeded', data: pgnText});  		
+	    	})
+	    	.then(function(msgBack) {
+	    		console.log("MSG BACK");
+	    		console.log(msgBack);
+	    		return msgBack.games;
 	    	})
 	    	.then(addPendingGames);
 

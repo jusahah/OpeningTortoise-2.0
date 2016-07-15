@@ -54,9 +54,9 @@ module.exports = function(Box) {
 				title: 'Add games to OpeningTortoise',
 				properties: ['openFile'],
 				buttonLabel: 'Upload into OpeningTortoise'
-			}, function(file) {
-				console.log(file);
-				uploadPGN(file);
+			}, function(files) {
+				console.log(files);
+				uploadPGN(files[0]);
 			})
 		}
 

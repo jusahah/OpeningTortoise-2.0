@@ -25,8 +25,10 @@ module.exports = function(Box, tempFolder) {
 			// Otherwise we call reject
 			// This allows client to decide what to do on resolve vs. reject
 			if (arg.success) {
+				console.log("Calling cb in processCommunication");
 				idsToPromiseCallbacks[msgID].resolve(arg.data);
 			} else {
+				console.log("Rejecting cb in processCommunication")
 				idsToPromiseCallbacks[msgID].reject(arg.data);
 			}
 
