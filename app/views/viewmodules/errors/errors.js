@@ -21,6 +21,8 @@ module.exports = function(Box) {
 
 		var showNotification = function(data) {
 
+			console.error("SHOW NOTIFICATION RUN");
+
 			var notif = alertRow.find('#aikavahti_notification');
 
 			if (data && typeof(data) === 'object') {

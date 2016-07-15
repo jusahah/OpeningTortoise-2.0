@@ -1,3 +1,5 @@
+var dialog = require('electron').remote.dialog;
+
 module.exports = function(Box) {
 
 	Box.Application.addModule('pgnupload', function(context) {
@@ -44,11 +46,29 @@ module.exports = function(Box) {
 			});
 
 		}
+
+		var openYourModal = function() {
+
+			//$('#pgnuploadModal').modal('show');
+			dialog.showOpenDialog({
+				title: 'Add games to OpeningTortoise',
+				properties: ['openFile'],
+				buttonLabel: 'Upload into OpeningTortoise'
+			}, function(file) {
+				console.log(file);
+				uploadPGN(file);
+			})
+		}
+
+		var uploadPGN = function(filepath) {
+			var inputService = context.getService('inputService');
+			inputService.uploadFromPGNFile(filepath);
+		}
 		
 
 		// Public API
 		return {
-			messages: ['routechanged'],
+			messages: ['routechanged', 'modalOpen'],
 			onclick: function(event, element, elementType) {
 				console.log("CLICK IN pgnupload: " + elementType);
 
@@ -57,12 +77,20 @@ module.exports = function(Box) {
 				}
 			},
 			onmessage: function(name, data) {
-				console.log("MSG IN pgnupload: " + name + " | " + data.route);
-				if (data.route === moduleName) {
-					activate();
-				} else {
-					deactivate();
-				}				
+
+				if (name === 'routechanged') {
+					console.log("MSG IN pgnupload: " + name + " | " + data.route);
+					if (data.route === moduleName) {
+						activate();
+					} else {
+						deactivate();
+					}	
+				} else if (name === 'modalOpen' && data === 'pgnupload') {
+					console.log("CAUGHT MODAL OPEN IN PNGUPLOAD VIEW MOD");
+					console.log(data);
+					openYourModal();
+
+				}			
 				
 			}
 

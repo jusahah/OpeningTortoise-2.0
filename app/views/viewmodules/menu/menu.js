@@ -165,6 +165,8 @@ module.exports = function(Box) {
 					if (action === 'analyze') {
 						return sendAnalysisResumeRequest();
 					}
+				} else if (actionType === 'modal') {
+					return Box.Application.broadcast('modalOpen', elementType.split('-')[0]);
 				}
 
 				
