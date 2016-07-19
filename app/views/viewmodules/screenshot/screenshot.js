@@ -8,6 +8,7 @@ module.exports = function(Box) {
 
 		// Private stuff
 		var deactivate = function() {
+			ensureCaptureOff();
 			if (!isHidden) {
 				isHidden = true;
 				$el.hide();
@@ -34,6 +35,10 @@ module.exports = function(Box) {
 				//$el.empty().append("<h3>" + JSON.stringify(viewData) + "</h3>");
 				$el.show();
 			});
+			
+		}
+
+		var ensureCaptureOff = function() {
 			
 		}
 

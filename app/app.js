@@ -30,6 +30,7 @@ dataAPI.runSeed(4); // Only for testing
 
 // BACKGROUND SERVICES
 var analysisController = require('./bgservices/analysisController')(Box);
+var positionAI = require('./chessposition_ai/app');
 
 // SERVICES REGISTRATION
 // Args: Box, path_to_the_temporary_file_folder
@@ -38,6 +39,7 @@ require('./services/util/screenshot')(Box, app.getAppPath()); // Screenshotting 
 require('./services/processCommunication')(Box); // Communication API with background process
 require('./services/dataService')(Box, dataAPI); // Provides extra functions for managing data
 require('./services/inputService')(Box, dataAPI); // Handles uploading data into app
+require('./services/captureService')(Box, positionAI); // Handles uploading data into app
 
 require('./services/analysisService')(Box, analysisController); // Handles analysis requests
 
@@ -48,6 +50,7 @@ require('./views/viewmodules/menu/menu')(Box);
 require('./views/viewmodules/screenshot/screenshot')(Box);
 require('./views/viewmodules/textnote/textnote')(Box);
 require('./views/viewmodules/pgnupload/pgnupload')(Box);
+require('./views/viewmodules/capture/capture')(Box);
 require('./views/viewmodules/errors/errors')(Box);
 
 

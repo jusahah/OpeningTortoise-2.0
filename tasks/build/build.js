@@ -19,6 +19,7 @@ var destDir = projectDir.cwd('./build');
 
 var paths = {
     copyFromAppDir: [
+        './chessposition_ai/**',
         './external_process_services/**',
         './bgservices/**',
         './test/**',

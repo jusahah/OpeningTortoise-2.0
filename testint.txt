@@ -1,0 +1,28 @@
+
+xwininfo: Please select the window about which you
+          would like information by clicking the
+          mouse in that window.
+
+xwininfo: Window id: 27263059 "Piping and Directing Output - serna On Ubuntu - Google Chrome"
+
+  Absolute upper-left X:  623
+  Absolute upper-left Y:  55
+  Relative upper-left X:  0
+  Relative upper-left Y:  0
+  Width: 1134
+  Height: 907
+  Depth: 24
+  Visual: 0x5d
+  Visual Class: TrueColor
+  Border width: 0
+  Class: InputOutput
+  Colormap: 0x5c (installed)
+  Bit Gravity State: ForgetGravity
+  Window Gravity State: NorthWestGravity
+  Backing Store State: NotUseful
+  Save Under State: no
+  Map State: IsViewable
+  Override Redirect State: no
+  Corners:  +623+55  -1243+55  -1243-958  +623-958
+  -geometry 1134x907+613+45
+
