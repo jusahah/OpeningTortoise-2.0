@@ -8,9 +8,12 @@ module.exports = function(Box) {
 		var isHidden = true; // Keeps local state whether DOM element is visible or not
 		var $el = $(context.getElement()); // Link to DOM element
 
+		// Due limitations of chessboard.js we have to get outside our own DOM el.
+		var chessboard = ChessBoard('chessboardWrapper', 'start');
+
 		// Private stuff
 		var deactivate = function() {
-			ensureCaptureOff();
+			turnCaptureOff();
 			if (!isHidden) {
 				isHidden = true;
 				$el.hide();
@@ -32,23 +35,37 @@ module.exports = function(Box) {
 				console.warn("Capture view coming into view!");
 				$('#globalLoadingBanner').hide();
 				showLatestFen('???');
+				ensureButtonsInInitialCondition();
 				$el.show();
 			});
 			
 		}
 
-		var ensureCaptureOff = function() {
+		var ensureButtonsInInitialCondition = function() {
+			$el.find('#stopcapture').hide();
+			$el.find('#startcapture').show();
+		}
+
+		var buttonsInRunningMode = function() {
+			$el.find('#startcapture').hide();
+			$el.find('#stopcapture').show();			
+		}
+
+		var turnCaptureOff = function() {
 			var captureService = context.getService('captureService');
 			captureService.turnOff();
+			ensureButtonsInInitialCondition();
 		}
 
 		var turnCaptureOn = function() {
 			var captureService = context.getService('captureService');
 			captureService.turnOn();
+			buttonsInRunningMode();
 		}
 
 		var showLatestFen = function(fen) {
 			$el.find('#latestFen').empty().append(fen);
+			chessboard.position(fen, false);
 		}
 
 
@@ -61,6 +78,8 @@ module.exports = function(Box) {
 					// Start live capture mode
 					console.log("Live capture starting");
 					turnCaptureOn();
+				} else if (elementType === 'stopcapture') {
+					turnCaptureOff();
 				}
 				
 			},

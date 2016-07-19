@@ -22,8 +22,9 @@ module.exports = function(Box, positionAI) {
 			console.log("Setting test timeouts for calling positionAI API");
 			setTimeout(takeBoardSetupImage, 2000);
 			setTimeout(function() {
+				if (captureInterval) return;
 				captureInterval = setInterval(function() {
-					takeScreenshot(1).then(sendToAnalysis);
+					takeScreenshot(0).then(sendToAnalysis);
 				}, 2500);
 			}, 7000);
 
@@ -35,6 +36,7 @@ module.exports = function(Box, positionAI) {
 			if (captureInterval) {
 				clearInterval(captureInterval);
 				captureInterval = null;
+				console.log("Capture interval killed");
 			}
 		}
 
