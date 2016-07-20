@@ -68,10 +68,24 @@ module.exports = function(Box) {
 			chessboard.position(fen, false);
 		}
 
+		var showLatestMoves = function(moves) {
+			console.error(moves);
+			var currmovenum = 1;
+			var s = _
+			.chain(moves)
+			.chunk(2)
+			.reduce(function(sofar, movepair) {
+				return sofar + (currmovenum++) + ". " + movepair[0] + " " + (movepair[1] || "") + " ";
+			}, "")
+			.value();
+
+			$el.find('#moveHistory').empty().append(s);
+		}
+
 
 		// Public API
 		return {
-			messages: ['routechanged', 'modalOpen', 'latestFen'],
+			messages: ['routechanged', 'modalOpen', 'latestFen', 'newMoves'],
 			onclick: function(event, element, elementType) {
 				console.log("CLICK IN capture: " + elementType);
 				if (elementType === 'startcapture') {
@@ -94,6 +108,8 @@ module.exports = function(Box) {
 					}	
 				} else if (name === 'latestFen') {
 					showLatestFen(data);
+				} else if (name === 'newMoves') {
+					showLatestMoves(data);
 				}		
 				
 			}

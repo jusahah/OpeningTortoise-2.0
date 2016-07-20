@@ -4,11 +4,15 @@ var uuid = require('node-uuid');
 var shell = require("shelljs");
 var shellglobal = require('shelljs/global');
 
+var gameTrackingCreator = require('./gameTracking');
+
 module.exports = function(Box, positionAI) {
 	Box.Application.addService('captureService', function(application) {
 
 		var currentlyTakingScreenshot = false;
 		var captureInterval = null;
+
+		var gameTracker = null;
 
 		var turnOn = function() {
 			/*
@@ -20,24 +24,28 @@ module.exports = function(Box, positionAI) {
 			}, 8000);
 			*/
 			console.log("Setting test timeouts for calling positionAI API");
+
+			if (captureInterval) return;
+
+			captureInterval = 1; // Mark capturing started although not yet started
+
+			gameTracker = gameTrackingCreator();
 			setTimeout(takeBoardSetupImage, 2000);
-			setTimeout(function() {
-				if (captureInterval) return;
-				captureInterval = setInterval(function() {
-					takeScreenshot(0).then(sendToAnalysis);
-				}, 2500);
-			}, 7000);
+						
+
 
 
 		}
 
 		var turnOff = function() {
 			// Clear the interval timer
-			if (captureInterval) {
+			if (captureInterval && captureInterval !== 1) {
 				clearInterval(captureInterval);
 				captureInterval = null;
 				console.log("Capture interval killed");
 			}
+
+			gameTracker = null;
 		}
 
 	    var takeScreenshot = function(timer) {
@@ -65,13 +73,23 @@ module.exports = function(Box, positionAI) {
 	    	return positionAI.resolveImageUsingBoardSetup(tempFileName)
 	    	.then(function(fen) {
 	    		console.warn("FEN RECEIVED BY CAPTURE SERVICE: " + fen);
-	    		Box.Application.broadcast('latestFen', fen);
+	    		// See if it matches some of the possible next fens
+	    		var moves = gameTracker.newFen(fen);
+	    		if (moves) {
+	    			// Fen was accepted by gameTracker
+	    			Box.Application.broadcast('newMoves', moves);
+	    			Box.Application.broadcast('latestFen', fen);
+	    		}
+	    		
 	    	})
 	    }
 
 	    var takeBoardSetupImage = function() {
 	    	return takeScreenshot(1).then(function(tempFileName) {
 	    		console.log("Sending board setup request to positionAI")
+	    		captureInterval = setInterval(function() {
+					takeScreenshot(0).then(sendToAnalysis);
+				}, 1200);
 	    		return positionAI.findBoardSetup(tempFileName);
 	    	});
 	    }
